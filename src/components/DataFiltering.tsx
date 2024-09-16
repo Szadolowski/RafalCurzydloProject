@@ -14,55 +14,51 @@ export default function DataFiltering() {
     };
 
   return (
-    <table className="border-2 border-white rounded-lg">
-      <thead>
-        <tr className="border border-white">
-          <th className="border border-white">Name</th>
-          <th className="border border-white">Username</th>
-          <th className="border border-white">Email</th>
-          <th className="border border-white">Phone</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr className="border border-white">
-          <td className="border border-white">
-            <input
-              type="text"
-              className="bg-gray-600"
-              value={filters.name}
-              onChange={handleChange("name")}
-              placeholder="Filter by name"
-            />
-          </td>
-          <td className="border border-white">
-            <input
-              type="text"
-              className="bg-gray-600"
-              value={filters.userName}
-              onChange={handleChange("userName")}
-              placeholder="Filter by username"
-            />
-          </td>
-          <td className="border border-white">
-            <input
-              type="text"
-              className="bg-gray-600"
-              value={filters.email}
-              onChange={handleChange("email")}
-              placeholder="Filter by email"
-            />
-          </td>
-          <td className="border border-white">
-            <input
-              type="text"
-              className="bg-gray-600"
-              value={filters.phone}
-              onChange={handleChange("phone")}
-              placeholder="Filter by phone"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <thead className="border-b-4 border-white ">
+      <tr className="border border-white">
+        <th className="border border-white">Name</th>
+        <th className="border border-white">Username</th>
+        <th className="border border-white">Email</th>
+        <th className="border border-white">Phone</th>
+      </tr>
+      <tr className="border border-white">
+        <td className="border border-white">
+          <input
+            type="text"
+            className="bg-gray-600"
+            value={filters.name}
+            onChange={handleChange("name")}
+            placeholder="Filter by name"
+          />
+        </td>
+        <td className="border border-white">
+          <input
+            type="text"
+            className="bg-gray-600"
+            value={filters.userName}
+            onChange={handleChange("userName")}
+            placeholder="Filter by username"
+          />
+        </td>
+        <td className="border border-white">
+          <input
+            type="text"
+            className="bg-gray-600"
+            value={filters.email}
+            onChange={handleChange("email")}
+            placeholder="Filter by email"
+          />
+        </td>
+        <td className="border border-white">
+          <input
+            type="text"
+            className="bg-gray-600"
+            value={filters.phone}
+            onChange={handleChange("phone")}
+            placeholder="Filter by phone"
+          />
+        </td>
+      </tr>
+    </thead>
   );
 }

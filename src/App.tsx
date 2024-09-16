@@ -39,17 +39,9 @@ function App() {
   return (
     <section className="bg-gray-900 min-h-screen text-white flex flex-col">
       <h1>User Table</h1>
-      {error && <p className="text-red-500">Error: {error}</p>}
-      <DataFiltering />
-      <table className="border-2 border-white rounded-lg">
-        <thead>
-          <tr className="border border-b-4 border-white">
-            <th className="border border-white">Name</th>
-            <th className="border border-white">Username</th>
-            <th className="border border-white">Email</th>
-            <th className="border border-white">Phone</th>
-          </tr>
-        </thead>
+      <table>
+        {error && <p className="text-red-500">Error: {error}</p>}
+        <DataFiltering />
         <tbody>
           {filteredUsers.map((user, index) => (
             <DataGenerator
