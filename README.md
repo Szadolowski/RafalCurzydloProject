@@ -182,5 +182,6 @@ export interface User {
 }
 ```
 
-Wyzwania
+### Wyzwania
+
 Jednym z wyzwań w tym projekcie było użycie Redux, z którym wcześniej nie miałem styczności. Jednak dzięki moim umiejętnościom szybkiej nauki, udało mi się skutecznie zintegrować Redux Toolkit bez większych problemów.
