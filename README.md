@@ -28,8 +28,9 @@ export const fetchUsers = createAsyncThunk<User[]>(
 );
 ```
 
-2. Advanced Filtering
-   Users can filter the table based on name, username, email, and phone. The filtering logic is handled using Redux's useDispatch and useSelector:
+### 2. Advanced Filtering
+
+Users can filter the table based on name, username, email, and phone. The filtering logic is handled using Redux's useDispatch and useSelector:
 
 ```typescript
 
@@ -41,8 +42,9 @@ dispatch(setFilter({ key, value: event.target.value }));
 
 Each column has an input field for filtering, which updates the table dynamically.
 
-3. Redux State Management
-   State management is handled using Redux Toolkit. The userSlice manages user data and filters:
+### 3. Redux State Management
+
+State management is handled using Redux Toolkit. The userSlice manages user data and filters:
 
 ```typescript
 
@@ -72,8 +74,9 @@ const userSlice = createSlice({
 });
 ```
 
-4. Type Safety
-   The entire application is written in TypeScript for strong type safety, minimizing runtime errors. Example of the User type:
+### 4. Type Safety
+
+The entire application is written in TypeScript for strong type safety, minimizing runtime errors. Example of the User type:
 
 ```typescript
 
@@ -86,21 +89,24 @@ export interface User {
 }
 ```
 
-Challenges
+#### Challenges
+
 One of the challenges in this project was working with Redux, as I had not used it before. However, my ability to quickly learn new technologies allowed me to integrate it successfully without major issues.
 
 Aplikacja Zarządzania Użytkownikami
 Ten projekt to aplikacja zarządzania użytkownikami zbudowana przy użyciu React, Redux Toolkit i TypeScript. Pobiera ona dane użytkowników z API i wyświetla je w tabeli, umożliwiając filtrowanie według imienia, nazwy użytkownika, e-maila oraz telefonu. Tabela dynamicznie aktualizuje się, gdy użytkownik wpisuje dane w polach filtrowania.
 
-Główne Funkcje
+# Główne Funkcje
 
-1. Tabela Zarządzania Użytkownikami
-   Aplikacja wyświetla informacje o użytkownikach, w tym:
+### 1. Tabela Zarządzania Użytkownikami
 
-Imię
-Nazwa użytkownika
-E-mail
-Telefon
+Aplikacja wyświetla informacje o użytkownikach, w tym:
+
+- Name
+- Username
+- Email
+- Phone
+
 Dane użytkowników są pobierane z API za pomocą createAsyncThunk w Redux. Przykład pobierania użytkowników:
 
 ```typescript
@@ -117,8 +123,9 @@ export const fetchUsers = createAsyncThunk<User[]>(
 );
 ```
 
-2. Zaawansowane Filtrowanie
-   Użytkownicy mogą filtrować tabelę według imienia, nazwy użytkownika, e-maila i telefonu. Logika filtrowania jest zarządzana za pomocą useDispatch i useSelector:
+### 2. Zaawansowane Filtrowanie
+
+Użytkownicy mogą filtrować tabelę według imienia, nazwy użytkownika, e-maila i telefonu. Logika filtrowania jest zarządzana za pomocą useDispatch i useSelector:
 
 ```typescript
 
@@ -130,8 +137,9 @@ const handleChange = (key: keyof typeof filters) => (event: React.ChangeEvent<HT
 
 Każda kolumna ma pole wejściowe do filtrowania, które dynamicznie aktualizuje tabelę.
 
-3. Zarządzanie Stanem z Redux
-   Zarządzanie stanem odbywa się przy pomocy Redux Toolkit. userSlice zarządza danymi użytkowników i filtrami:
+### 3. Zarządzanie Stanem z Redux
+
+Zarządzanie stanem odbywa się przy pomocy Redux Toolkit. userSlice zarządza danymi użytkowników i filtrami:
 
 ```typescript
 const userSlice = createSlice({
@@ -160,8 +168,9 @@ const userSlice = createSlice({
 });
 ```
 
-4. Typowanie
-   Cała aplikacja jest napisana w TypeScript, co zapewnia silne typowanie i minimalizuje błędy w czasie działania. Przykład typu User:
+### 4. Typowanie
+
+Cała aplikacja jest napisana w TypeScript, co zapewnia silne typowanie i minimalizuje błędy w czasie działania. Przykład typu User:
 
 ```typescript
 export interface User {
@@ -175,7 +184,3 @@ export interface User {
 
 Wyzwania
 Jednym z wyzwań w tym projekcie było użycie Redux, z którym wcześniej nie miałem styczności. Jednak dzięki moim umiejętnościom szybkiej nauki, udało mi się skutecznie zintegrować Redux Toolkit bez większych problemów.
-
-```
-
-```
