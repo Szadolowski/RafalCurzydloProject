@@ -26,6 +26,8 @@ export const fetchUsers = createAsyncThunk<User[]>(
     return data;
   }
 );
+```
+
 2. Advanced Filtering
 Users can filter the table based on name, username, email, and phone. The filtering logic is handled using Redux's useDispatch and useSelector:
 
