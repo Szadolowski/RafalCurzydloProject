@@ -15,7 +15,7 @@ The application displays user information, including:
 
 The user data is fetched from an API using Redux's `createAsyncThunk`. Example of fetching users:
 
-````typescript
+```typescript
 export const fetchUsers = createAsyncThunk<User[]>(
   "users/fetchUsers",
   async () => {
@@ -29,20 +29,20 @@ export const fetchUsers = createAsyncThunk<User[]>(
 ```
 
 2. Advanced Filtering
-Users can filter the table based on name, username, email, and phone. The filtering logic is handled using Redux's useDispatch and useSelector:
+   Users can filter the table based on name, username, email, and phone. The filtering logic is handled using Redux's useDispatch and useSelector:
 
 typescript
 Skopiuj kod
 const filters = useSelector((state: RootState) => state.userData.filters);
 const handleChange = (key: keyof typeof filters) => (event: React.ChangeEvent<HTMLInputElement>) => {
-  dispatch(setFilter({ key, value: event.target.value }));
+dispatch(setFilter({ key, value: event.target.value }));
 };
 Each column has an input field for filtering, which updates the table dynamically.
 
 3. Redux State Management
-State management is handled using Redux Toolkit. The userSlice manages user data and filters:
+   State management is handled using Redux Toolkit. The userSlice manages user data and filters:
 
-```typescript
+````typescript
 
 const userSlice = createSlice({
   name: "userData",
@@ -109,9 +109,10 @@ export const fetchUsers = createAsyncThunk<User[]>(
     return data;
   }
 );
-```
+````
+
 2. Zaawansowane Filtrowanie
-Użytkownicy mogą filtrować tabelę według imienia, nazwy użytkownika, e-maila i telefonu. Logika filtrowania jest zarządzana za pomocą useDispatch i useSelector:
+   Użytkownicy mogą filtrować tabelę według imienia, nazwy użytkownika, e-maila i telefonu. Logika filtrowania jest zarządzana za pomocą useDispatch i useSelector:
 
 ```typescript
 
@@ -120,10 +121,11 @@ const handleChange = (key: keyof typeof filters) => (event: React.ChangeEvent<HT
   dispatch(setFilter({ key, value: event.target.value }));
 };
 ```
+
 Każda kolumna ma pole wejściowe do filtrowania, które dynamicznie aktualizuje tabelę.
 
 3. Zarządzanie Stanem z Redux
-Zarządzanie stanem odbywa się przy pomocy Redux Toolkit. userSlice zarządza danymi użytkowników i filtrami:
+   Zarządzanie stanem odbywa się przy pomocy Redux Toolkit. userSlice zarządza danymi użytkowników i filtrami:
 
 ```typescript
 const userSlice = createSlice({
@@ -151,8 +153,9 @@ const userSlice = createSlice({
   },
 });
 ```
+
 4. Typowanie
-Cała aplikacja jest napisana w TypeScript, co zapewnia silne typowanie i minimalizuje błędy w czasie działania. Przykład typu User:
+   Cała aplikacja jest napisana w TypeScript, co zapewnia silne typowanie i minimalizuje błędy w czasie działania. Przykład typu User:
 
 ```typescript
 export interface User {
@@ -163,6 +166,10 @@ export interface User {
   phone: string;
 }
 ```
+
 Wyzwania
 Jednym z wyzwań w tym projekcie było użycie Redux, z którym wcześniej nie miałem styczności. Jednak dzięki moim umiejętnościom szybkiej nauki, udało mi się skutecznie zintegrować Redux Toolkit bez większych problemów.
-````
+
+```
+
+```
