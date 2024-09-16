@@ -31,12 +31,14 @@ export const fetchUsers = createAsyncThunk<User[]>(
 2. Advanced Filtering
    Users can filter the table based on name, username, email, and phone. The filtering logic is handled using Redux's useDispatch and useSelector:
 
-typescript
-Skopiuj kod
+```typescript
+
 const filters = useSelector((state: RootState) => state.userData.filters);
 const handleChange = (key: keyof typeof filters) => (event: React.ChangeEvent<HTMLInputElement>) => {
 dispatch(setFilter({ key, value: event.target.value }));
 };
+```
+
 Each column has an input field for filtering, which updates the table dynamically.
 
 3. Redux State Management
