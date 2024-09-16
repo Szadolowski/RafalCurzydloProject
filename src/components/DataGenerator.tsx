@@ -1,12 +1,3 @@
-interface user {
-  index: number;
-  id: number;
-  personName: string;
-  userName: string;
-  email: string;
-  phone: string;
-}
-
 export default function DataGenerator({
   index,
   id,
@@ -14,7 +5,14 @@ export default function DataGenerator({
   userName,
   email,
   phone,
-}: user) {
+}: {
+  index: number;
+  id: number;
+  personName: string;
+  userName: string;
+  email: string;
+  phone: string;
+}) {
   return (
     <tr id={`numer_${index}_${id}`}>
       <td className="border border-white">{personName}</td>

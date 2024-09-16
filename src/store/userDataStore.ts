@@ -4,7 +4,6 @@ import {
   createAsyncThunk,
 } from "@reduxjs/toolkit";
 
-// Typy danych użytkowników
 export interface User {
   id: number;
   name: string;
@@ -13,7 +12,6 @@ export interface User {
   phone: string;
 }
 
-// Typ dla filtrów
 interface Filters {
   name: string;
   userName: string;
@@ -21,13 +19,13 @@ interface Filters {
   phone: string;
 }
 
-// Typ stanu dla UserSlice
 interface UserState {
   users: User[];
   filters: Filters;
+  error: string | null;
+  loading: boolean;
 }
 
-// Początkowy stan
 const initialState: UserState = {
   users: [],
   filters: {
@@ -36,19 +34,21 @@ const initialState: UserState = {
     email: "",
     phone: "",
   },
+  error: null,
+  loading: false,
 };
 
-// Thunk do pobierania danych użytkowników z pliku JSON
-export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const response = await fetch(
-    "https://my-json-server.typicode.com/Szadolowski/db.json/userData"
-  );
-  const data = await response.json();
-  console.log(data, "test");
-  return data; // Upewnij się, że struktura JSON jest poprawna
-});
+export const fetchUsers = createAsyncThunk<User[]>(
+  "users/fetchUsers",
+  async () => {
+    const response = await fetch(
+      "https://my-json-server.typicode.com/Szadolowski/db.json/userData"
+    );
+    const data: User[] = await response.json();
+    return data;
+  }
+);
 
-// Slice do zarządzania stanem użytkowników
 const userSlice = createSlice({
   name: "userData",
   initialState,
@@ -62,21 +62,28 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchUsers.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
+      state.loading = false;
       state.users = action.payload;
+    });
+    builder.addCase(fetchUsers.rejected, (state) => {
+      state.loading = false;
+      state.error = "Failed to fetch users";
     });
   },
 });
-// Eksport reducerów i akcji
+
 export const { setFilter } = userSlice.actions;
 
-// Konfiguracja Redux Store
 export const store = configureStore({
   reducer: {
-    userData: userSlice.reducer, // Używamy "userData" jako klucza
+    userData: userSlice.reducer,
   },
 });
 
-// Eksport typów
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

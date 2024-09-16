@@ -11,30 +11,35 @@ import DataFiltering from "./components/DataFiltering";
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
-  const { users, filters } = useSelector((state: RootState) => state.userData);
+  const { users, filters, error } = useSelector(
+    (state: RootState) => state.userData
+  );
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  // Filtrujemy użytkowników na podstawie filtrów
-  const filteredUsers = users.filter((user: User) =>
-    Object.entries(filters).every(([key, value]) => {
-      if (value === "") return true;
-      if (key in user) {
-        const userKey = key as keyof User; // Rzutowanie key jako klucz User
-        return user[userKey]
-          ?.toString()
-          .toLowerCase()
-          .includes(value.toLowerCase());
-      }
-      return false;
-    })
-  );
+  const filteredUsers =
+    users.length > 0
+      ? users.filter((user: User) =>
+          Object.entries(filters).every(([key, value]) => {
+            if (value === "") return true;
+            if (key in user) {
+              const userKey = key as keyof User;
+              return user[userKey]
+                ?.toString()
+                .toLowerCase()
+                .includes(value.toLowerCase());
+            }
+            return false;
+          })
+        )
+      : [];
 
   return (
     <section className="bg-gray-900 min-h-screen text-white flex flex-col">
       <h1>User Table</h1>
+      {error && <p className="text-red-500">Error: {error}</p>}
       <DataFiltering />
       <table className="border-2 border-white rounded-lg">
         <thead>

@@ -6,7 +6,9 @@ export default function DataFiltering() {
   const filters = useSelector((state: RootState) => state.userData.filters);
 
   const handleChange =
-    (key: keyof typeof filters) =>
+    (
+      key: keyof typeof filters
+    ): ((event: React.ChangeEvent<HTMLInputElement>) => void) =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
       dispatch(setFilter({ key, value: event.target.value }));
     };
