@@ -14,11 +14,11 @@ export default function DataGenerator({
   phone: string;
 }) {
   return (
-    <tr id={`numer_${index}_${id}`}>
-      <td className="border border-white">{personName}</td>
-      <td className="border border-white">{userName}</td>
-      <td className="border border-white">{email}</td>
-      <td className="border border-white">{phone}</td>
+    <tr id={`numer_${index}_${id}`} className="hover:bg-slate-700">
+      <td className="border border-white hover:bg-slate-600">{personName}</td>
+      <td className="border border-white hover:bg-slate-600">{userName}</td>
+      <td className="border border-white hover:bg-slate-600">{email}</td>
+      <td className="border border-white hover:bg-slate-600">{phone}</td>
     </tr>
   );
 }
