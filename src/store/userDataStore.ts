@@ -41,10 +41,10 @@ const initialState: UserState = {
 // Thunk do pobierania danych użytkowników z pliku JSON
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const response = await fetch(
-    "https://mockapi.io/clone/66e8583ab17821a9d9dc5dbf"
+    "https://my-json-server.typicode.com/Szadolowski/db.json/userData"
   );
   const data = await response.json();
-  console.log(data);
+  console.log(data, "test");
   return data; // Upewnij się, że struktura JSON jest poprawna
 });
 
