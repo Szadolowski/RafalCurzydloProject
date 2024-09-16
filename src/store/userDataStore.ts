@@ -13,32 +13,67 @@ export interface User {
   phone: string;
 }
 
+// Typ dla filtrów
+interface Filters {
+  name: string;
+  userName: string;
+  email: string;
+  phone: string;
+}
+
+// Typ stanu dla UserSlice
+interface UserState {
+  users: User[];
+  filters: Filters;
+}
+
 // Początkowy stan
-const initialState: User[] = [];
+const initialState: UserState = {
+  users: [],
+  filters: {
+    name: "",
+    userName: "",
+    email: "",
+    phone: "",
+  },
+};
 
 // Thunk do pobierania danych użytkowników z pliku JSON
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const response = await fetch("/data/db.json");
+  const response = await fetch(
+    "https://mockapi.io/clone/66e8583ab17821a9d9dc5dbf"
+  );
   const data = await response.json();
-  return data.userData;
+  console.log(data);
+  return data; // Upewnij się, że struktura JSON jest poprawna
 });
 
 // Slice do zarządzania stanem użytkowników
 const userSlice = createSlice({
-  name: "users",
+  name: "userData",
   initialState,
-  reducers: {},
+  reducers: {
+    setFilter: (state, action) => {
+      const { key, value } = action.payload as {
+        key: keyof Filters;
+        value: string;
+      };
+      state.filters[key] = value;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      return action.payload;
+      state.users = action.payload;
     });
   },
 });
+// Eksport reducerów i akcji
+export const { setFilter } = userSlice.actions;
 
 // Konfiguracja Redux Store
 export const store = configureStore({
   reducer: {
-    users: userSlice.reducer,
+    userData: userSlice.reducer, // Używamy "userData" jako klucza
   },
 });
 

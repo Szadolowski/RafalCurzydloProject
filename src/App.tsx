@@ -1,20 +1,41 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "./store/userDataStore";
-import { RootState, AppDispatch } from "./store/userDataStore"; // Importujemy AppDispatch
-import DataGenerator from "./components/DataGenerator.tsx";
+import {
+  fetchUsers,
+  RootState,
+  AppDispatch,
+  User,
+} from "./store/userDataStore";
+import DataGenerator from "./components/DataGenerator";
+import DataFiltering from "./components/DataFiltering";
 
 function App() {
-  const dispatch: AppDispatch = useDispatch(); // Używamy AppDispatch do poprawnego typowania
-  const users = useSelector((state: RootState) => state.users);
+  const dispatch: AppDispatch = useDispatch();
+  const { users, filters } = useSelector((state: RootState) => state.userData);
 
   useEffect(() => {
-    dispatch(fetchUsers()); // Wywołujemy akcję fetchUsers
+    dispatch(fetchUsers());
   }, [dispatch]);
+
+  // Filtrujemy użytkowników na podstawie filtrów
+  const filteredUsers = users.filter((user: User) =>
+    Object.entries(filters).every(([key, value]) => {
+      if (value === "") return true;
+      if (key in user) {
+        const userKey = key as keyof User; // Rzutowanie key jako klucz User
+        return user[userKey]
+          ?.toString()
+          .toLowerCase()
+          .includes(value.toLowerCase());
+      }
+      return false;
+    })
+  );
 
   return (
     <section className="bg-gray-900 min-h-screen text-white flex flex-col">
       <h1>User Table</h1>
+      <DataFiltering />
       <table className="border-2 border-white rounded-lg">
         <thead>
           <tr className="border border-b-4 border-white">
@@ -25,15 +46,15 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {users.map((e, index) => (
+          {filteredUsers.map((user, index) => (
             <DataGenerator
-              key={e.id}
+              key={user.id}
               index={index + 1}
-              id={e.id}
-              personName={e.name}
-              userName={e.userName}
-              email={e.email}
-              phone={e.phone}
+              id={user.id}
+              personName={user.name}
+              userName={user.userName}
+              email={user.email}
+              phone={user.phone}
             />
           ))}
         </tbody>

@@ -15,9 +15,8 @@ export default function DataGenerator({
   email,
   phone,
 }: user) {
-  console.log(index);
   return (
-    <tr id={`numer_${id}`}>
+    <tr id={`numer_${index}_${id}`}>
       <td className="border border-white">{personName}</td>
       <td className="border border-white">{userName}</td>
       <td className="border border-white">{email}</td>
