@@ -1,3 +1,5 @@
+### link: https://assignment-rafal-curzydlo.netlify.app
+
 # User Management Application
 
 This project is a **user management application** built using **React**, **Redux Toolkit**, and **TypeScript**. It retrieves user data from an API and displays it in a table, allowing users to filter the data by name, username, email, and phone. The table dynamically updates as the user types into the filter fields.
